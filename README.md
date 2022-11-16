@@ -58,7 +58,7 @@
  ```
  cd ros2_ws
  ```
-    - or
+   - or
  ```
  cd <ros2_workspace_name>
  ```
