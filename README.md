@@ -5,6 +5,7 @@
  - Google Style Guide was followed in all the cpp files
  - CPPCHECK and CPPLINT was run to perform static code analysis
  - results folder contains the output of CPPCHECK and CPPLINT in a text file
+ - ROS service and client implementation
 
 ## Personnel:
  - Dhinesh Rajasekaran 
