@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+---
 # Overview:
  - This repository consists of a basic publisher-subscriber node implemented in ROS2
  - The publisher publishes a custom string "Hi, This is ROS2 " followed by message count
