@@ -1,0 +1,97 @@
+\hypertarget{node__pubs_8cpp}{}\doxysection{node\+\_\+pubs.\+cpp File Reference}
+\label{node__pubs_8cpp}\index{node\_pubs.cpp@{node\_pubs.cpp}}
+
+
+This is a R\+OS server node which uses a custom service to modify a string.  
+
+
+{\ttfamily \#include \char`\"{}rclcpp/rclcpp.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tutorial\+\_\+interfaces/srv/modify\+\_\+string.\+hpp\char`\"{}}\newline
+Include dependency graph for node\+\_\+pubs.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{node__pubs_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{node__pubs_8cpp_ad53ee5bb7e31adfe4da48f3f88862e12}{modify}} (const shared\+\_\+ptr$<$ Modify\+String\+::\+Request $>$ request, shared\+\_\+ptr$<$ Modify\+String\+::\+Response $>$ response)
+\begin{DoxyCompactList}\small\item\em User defined function to modify incoming string. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{node__pubs_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Main function which initialises R\+OS communication and service. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is a R\+OS server node which uses a custom service to modify a string. 
+
+\begin{DoxyCopyright}{Copyright}
+(c) 2022 Dhinesh Rajasekaran
+\end{DoxyCopyright}
+\begin{DoxyAuthor}{Author}
+Dhinesh Rajasekaran (\href{mailto:dhinesh@umd.edu}{\texttt{ dhinesh@umd.\+edu}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/11-\/15 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{node__pubs_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{node__pubs_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{node\_pubs.cpp@{node\_pubs.cpp}!main@{main}}
+\index{main@{main}!node\_pubs.cpp@{node\_pubs.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Main function which initialises R\+OS communication and service. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & stores the no of arguements to send \& receive in command line \\
+\hline
+{\em argv} & stores the actual arguement data to send and receive in command line \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero 
+\end{DoxyReturn}
+$<$ initialise R\+OS communication framework
+
+$<$ creating shared pointer called node with the server name
+
+$<$ Using the node, declaring the server Server name given in () \& srv name in $<$$>$ binding the server with function call
+
+$<$ spin the node
+
+$<$ shutdown or stop the node which was init\mbox{\Hypertarget{node__pubs_8cpp_ad53ee5bb7e31adfe4da48f3f88862e12}\label{node__pubs_8cpp_ad53ee5bb7e31adfe4da48f3f88862e12}} 
+\index{node\_pubs.cpp@{node\_pubs.cpp}!modify@{modify}}
+\index{modify@{modify}!node\_pubs.cpp@{node\_pubs.cpp}}
+\doxysubsubsection{\texorpdfstring{modify()}{modify()}}
+{\footnotesize\ttfamily void modify (\begin{DoxyParamCaption}\item[{const shared\+\_\+ptr$<$ Modify\+String\+::\+Request $>$}]{request,  }\item[{shared\+\_\+ptr$<$ Modify\+String\+::\+Response $>$}]{response }\end{DoxyParamCaption})}
+
+
+
+User defined function to modify incoming string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & stores the incoming string from command line \\
+\hline
+{\em response} & stores the output string to be sent back to client \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+zero 
+\end{DoxyReturn}
+$<$ string being modifed with additional \char`\"{}\+Hi\char`\"{}
+
+$<$ display the incoming string
+
+$<$ display the modified string
