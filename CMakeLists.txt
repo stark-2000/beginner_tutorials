@@ -13,16 +13,22 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)
+find_package(tutorial_interfaces REQUIRED) 
 
-add_executable(talker src/publisher.cpp)
-add_executable(listener src/subscriber.cpp)
-ament_target_dependencies(talker rclcpp std_msgs)
-ament_target_dependencies(listener rclcpp std_msgs)
+add_executable(node_pubs src/node_pubs.cpp)
+ament_target_dependencies(node_pubs rclcpp tutorial_interfaces)
+add_executable(node_subs src/node_subs.cpp)
+ament_target_dependencies(node_subs rclcpp tutorial_interfaces)
 
 install(TARGETS
-  talker
-  listener
+  node_pubs
+  node_subs
   DESTINATION lib/${PROJECT_NAME})
+
+# Install launch files.
+install(DIRECTORY
+launch
+DESTINATION share/${PROJECT_NAME}/
+)
 
 ament_package()
