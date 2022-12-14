@@ -166,22 +166,22 @@
 
 ## Dependency Installation: 
 - ROS 2 Humble:
-- Follow the below website instructions to install ROS 2 Humble based on your Ubuntu version
-  - Ubuntu 22.04:
-    - https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html#install-ros-2-packages
-  
-  - Ubuntu 20.04 (binary package):
-    - https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html#install-ros-2-packages
+  - Follow the below website instructions to install ROS 2 Humble based on your Ubuntu version
+    - Ubuntu 22.04:
+      - https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html#install-ros-2-packages
+    
+    - Ubuntu 20.04 (binary package):
+      - https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html#install-ros-2-packages
 
-  - Ubuntu 20.04 (build from source):
-    - https://docs.ros.org/en/humble/Installation/Alternatives/Ubuntu-Development-Setup.html
+    - Ubuntu 20.04 (build from source):
+      - https://docs.ros.org/en/humble/Installation/Alternatives/Ubuntu-Development-Setup.html
 
- - srv package:
-    - A custom written srv file is used in this project which is needed for runing this program
-    - It's called "tutorial_interfaces/srv/modify_string.hpp". 
-    - This folder called "tutorial_interfaces" is a ROS package which has to be placed inside src directory of ros2 workspace along with other packages
-    - Then execute the following command:
-    ```
-    colcon build --packages-select tutorial_interfaces
-    ```
-    - This will build the dependency of custom service required
+- srv package:
+  - A custom written srv file is used in this project which is needed for runing this program
+  - It's called "tutorial_interfaces/srv/modify_string.hpp". 
+  - This folder called "tutorial_interfaces" is a ROS package which has to be placed inside src directory of ros2 workspace along with other packages
+  - Then execute the following command:
+  ```
+  colcon build --packages-select tutorial_interfaces
+  ```
+  - This will build the dependency of custom service required
