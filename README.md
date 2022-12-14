@@ -1,14 +1,16 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+---
 # Overview:
  - This repository consists of a basic server-client node implemented in ROS2
  - The server receives input string from client & sends back modifed string to client.
  - The client receives input string from user and sends the request to server and gets back the response which is modified string and prints it.
  - The client also has a class MinimalParam running which accepts command line arguement and modifies the string displayed.
- - Launch file is also created which launches all the nodes at once and modifies one parameter in the client node
- - Google Style Guide was followed in all the cpp files
- - CPPCHECK and CPPLINT was run to perform static code analysis
- - results folder contains the output of CPPCHECK and CPPLINT in a text file
- - doxygen documentation is added to the docs folder for all the cpp files
- - rqt console was run which shows the messages published with 2 different logger levels before and after sending the command line arguements
+ - Launch file is also created which launches all the nodes at once and modifies one parameter in the client node.
+ - Google Style Guide was followed in all the cpp files.
+ - CPPCHECK and CPPLINT was run to perform static code analysis.
+ - "results" folder contains the output of CPPCHECK and CPPLINT in a text file.
+ - doxygen documentation is added to the "docs" folder for all the cpp files.
+ - rqt console was run which shows the messages published with 2 different logger levels before and after sending the command line arguements.
 
 ## Personnel:
  - Dhinesh Rajasekaran 
@@ -173,13 +175,3 @@
 
   - Ubuntu 20.04 (build from source):
     - https://docs.ros.org/en/humble/Installation/Alternatives/Ubuntu-Development-Setup.html
-
- - srv package:
-    - A custom written srv file is used in this project which is needed for runing this program
-    - It's called "tutorial_interfaces/srv/modify_string.hpp". 
-    - This folder called "tutorial_interfaces" is a ROS package which has to be placed inside src directory of ros2 workspace along with other packages
-    - Then execute the following command:
-    ```
-    colcon build --packages-select tutorial_interfaces
-    ```
-    - This will build the dependency of custom service required
