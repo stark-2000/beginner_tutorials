@@ -1,7 +1,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ---
 # Overview:
- - This repository consists of tf2, ROS2 bag files, Unit testing
+ - This repository consists of tf2, ROS2 bag files & Unit testing
  - The server receives input string from client & sends back modifed string to client.
  - The client receives input string from user and sends the request to server and gets back the response which is modified string and prints it.
  - The client also has a class MinimalParam running which accepts command line arguement and modifies the string displayed.
