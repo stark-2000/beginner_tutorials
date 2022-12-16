@@ -23,7 +23,7 @@
 
 /**
  * @copyright (c) 2022 Dhinesh Rajasekaran
- * @file node_pubs.cpp
+ * @file talker.cpp
  * @author Dhinesh Rajasekaran (dhinesh@umd.edu)
  * @brief This is a ROS 2 TF2 static broadcaster node
  * string
@@ -36,11 +36,36 @@
 #include "geometry_msgs/msg/transform_stamped.hpp"
 #include "tf2/LinearMath/Quaternion.h"
 #include "tf2_ros/static_transform_broadcaster.h"
+#include "std_msgs/msg/string.hpp"
 
 // Using Namespace to improve code readability
 using namespace std;
 using namespace rclcpp;
 
+/** 
+ * @brief This example creates a subclass of Node and uses std::bind() to register a
+ * member function as a callback from the timer.
+ *
+ */
+class MinimalPublisher : public rclcpp::Node {
+ public:
+  MinimalPublisher() : Node("minimal_publisher"), count_(0) {
+    publisher_ = this->create_publisher<std_msgs::msg::String>("topic", 10);
+    timer_ = this->create_wall_timer(
+        500ms, std::bind(&MinimalPublisher::timer_callback, this));
+  }
+
+ private:
+  void timer_callback() {
+    auto message = std_msgs::msg::String();
+    message.data = "Hi, This is ROS2 " + std::to_string(count_++);
+    RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
+    publisher_->publish(message);
+  }
+  rclcpp::TimerBase::SharedPtr timer_;
+  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
+  size_t count_;
+};
 
 class StaticFramePublisher : public Node
 {
@@ -49,9 +74,7 @@ public:
   : Node("tf2_broadcaster_static")
   {
     tf_static_broadcaster_ = std::make_shared<tf2_ros::StaticTransformBroadcaster>(this);
-
-    // Publish static transforms once at startup
-    this->make_transforms(transformation);
+    this->make_transforms(transformation); ///< Publish static transforms once at startup
   }
 
 private:
@@ -63,9 +86,9 @@ private:
     t.header.frame_id = "world";
     t.child_frame_id = transformation[1];
 
-    t.transform.translation.x = atof(transformation[2]);
-    t.transform.translation.y = atof(transformation[3]);
-    t.transform.translation.z = atof(transformation[4]);
+    t.transform.translation.x = atof(transformation[2]); ///< Translation vector along x
+    t.transform.translation.y = atof(transformation[3]); ///< Translation vector along y
+    t.transform.translation.z = atof(transformation[4]); ///< Translation vector along z
 
     tf2::Quaternion q;
     q.setRPY(
@@ -73,23 +96,30 @@ private:
       atof(transformation[6]),
       atof(transformation[7]));
       
-    t.transform.rotation.x = q.x();
-    t.transform.rotation.y = q.y();
-    t.transform.rotation.z = q.z();
-    t.transform.rotation.w = q.w();
+    t.transform.rotation.x = q.x(); ///< Rotation vector along x
+    t.transform.rotation.y = q.y(); ///< Rotation vector along y
+    t.transform.rotation.z = q.z(); ///< Rotation vector along z
+    t.transform.rotation.w = q.w(); 
 
-    tf_static_broadcaster_->sendTransform(t);
+    tf_static_broadcaster_->sendTransform(t); ///< Transformation matrix 
   }
 
   shared_ptr<tf2_ros::StaticTransformBroadcaster> tf_static_broadcaster_;
 };
 
+/**
+ * @brief Main function which initialises ROS, receives command line arguement and 
+ * checks frame name.
+ * @param argc stores the no of arguements to send & receive in command line
+ * @param argv stores the actual arguement data to send and receive in command
+ * line
+ * @return zero
+ */
 int main(int argc, char * argv[])
 {
   auto logger = get_logger("logger");
 
-  // Obtain parameters from command line arguments
-  if (argc != 8) {
+  if (argc != 8) { ///< Obtain parameters from command line arguments:
     RCLCPP_INFO(
       logger, "Invalid number of parameters\nusage: "
       "$ ros2 run learning_tf2_cpp tf2_broadcaster_static "
@@ -97,16 +127,14 @@ int main(int argc, char * argv[])
     return 1;
   }
 
-  // As the parent frame of the transform is `world`, it is
-  // necessary to check that the frame name passed is different
-  if (strcmp(argv[1], "world") == 0) {
-    RCLCPP_INFO(logger, "Your static turtle name cannot be 'world'");
+  if (strcmp(argv[1], "world") == 0) { ///< As the parent frame of the transform is `world`, it is necessary to check that the frame name passed is different
+    RCLCPP_INFO(logger, "Your static bot name cannot be 'world'");
     return 1;
   }
 
-  // Pass parameters and initialize node
-  init(argc, argv);
-  spin(make_shared<StaticFramePublisher>(argv));
-  shutdown();
+  init(argc, argv); ///< initialise ROS communication framework
+  spin(make_shared<MinimalPublisher>());
+  spin(make_shared<StaticFramePublisher>(argv)); ///< spin the node
+  shutdown(); ///< shutdown or stop the node which was init
   return 0;
 }
